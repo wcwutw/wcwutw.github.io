@@ -153,13 +153,15 @@
 <p>B看不懂題敘的證明要如何生出解，只好用set唬爛一下greedy，反正看起來應該會過，結果前2組測資都只有最後一筆沒過，滿臉問號??當時覺得應該是greedy有幾筆數字會WA，所以就寫了比對程式跑過1~1e6中6的倍數看是哪個數燒掉，然而cout東西太多直接卡死我的codeblocks，只好讓它慢慢跑先去看別題。</p>
 <p>C的不是三的倍數可以直接比較，多拿11分</p>
 <p>F先拿O(n^2)9分，發現直接反著搜就好O(n)28分拿到。想了一下想到了O(nq)的解，59分。(過程中完全沒辦法compile和丟範測，不過都submit後就拿到了，蠻幸運的)</p>
-<p>之後花了一些時間回去看B，但仍然找不到bug。<br>到這邊三小時了，只拿了227，而且只AC一題==</p>
+<p>之後花了一些時間回去看B，但仍然找不到bug。<br>到這邊三小時了，只拿了227，而且只AC一題&#x3D;&#x3D;</p>
 <p>C想到的寫法頗煩，如果刻下去應該就會刻到比賽結束了，這樣的分數是無法接受的。D的前10分dfs應該就可以，後面看起來像樹DP沒什麼信心寫出來。E通靈不到解，基本也過不了。</p>
-<p>斟酌下來決定等B的debugcode跑完，在這個時間去寫F。<br>要想辦法壓複雜度，而Q的複雜度看起來是壓不下來的，所以應該要壓N。赫然想到可以先預處理原答案，然後每跑一次前綴修改時修正改掉的d或e，如此一來就能在O(N+Q)解決了。<br>關鍵code:<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if(s[i]==&#x27;e&#x27;) &#123;</span><br><span class="line">    cnt[i]=cnt[i+1]+1;</span><br><span class="line">    res[i]=res[i+1];</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    cnt[i]=cnt[i+1];</span><br><span class="line">    res[i]=res[i+1]+cnt[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><strong>pF AC 03:24:16</strong> 時隔三小時再度AC</p>
-<p>由於沒辦法compile的關係(跑B的debug)，丟上去吃了一個compile error，就是這個關鍵的CE讓我發現了B的bug。<br>CE的原因是因為陣列大小(2e5)應該要丟全域，F改掉就AC了(仍然是無compile和丟範測的狀態)<br>忽然想到B也有同樣的問題，同時debugcode剛好跑完，全部數字都過。<br>雖然不知道為甚麼會因為這樣被判WA(理論上應該是CE或RE吧)，但還是把它們丟到全域，竟然直接AC==(因為沒證greedy最大可以到多少，以為只能跟部分人一樣拿69分)</p>
+<p>斟酌下來決定等B的debugcode跑完，在這個時間去寫F。<br>要想辦法壓複雜度，而Q的複雜度看起來是壓不下來的，所以應該要壓N。赫然想到可以先預處理原答案，然後每跑一次前綴修改時修正改掉的d或e，如此一來就能在O(N+Q)解決了。<br>關鍵code:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if(s[i]==&#x27;e&#x27;) &#123;</span><br><span class="line">    cnt[i]=cnt[i+1]+1;</span><br><span class="line">    res[i]=res[i+1];</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    cnt[i]=cnt[i+1];</span><br><span class="line">    res[i]=res[i+1]+cnt[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>pF AC 03:24:16</strong> 時隔三小時再度AC</p>
+<p>由於沒辦法compile的關係(跑B的debug)，丟上去吃了一個compile error，就是這個關鍵的CE讓我發現了B的bug。<br>CE的原因是因為陣列大小(2e5)應該要丟全域，F改掉就AC了(仍然是無compile和丟範測的狀態)<br>忽然想到B也有同樣的問題，同時debugcode剛好跑完，全部數字都過。<br>雖然不知道為甚麼會因為這樣被判WA(理論上應該是CE或RE吧)，但還是把它們丟到全域，竟然直接AC&#x3D;&#x3D;(因為沒證greedy最大可以到多少，以為只能跟部分人一樣拿69分)</p>
 <p><strong>pB AC 03:26:17</strong> 幸福來<strong>得</strong>真快</p>
 <p>後來想拿D的10分，結果一直拿不到，用dsu試一下之後發現會有洞就放棄了，提前休息。</p>
-<h2 id="賽後"><a href="#賽後" class="headerlink" title="賽後"></a>賽後</h2><p>Final:368/700 Rk:4(校內1)</p>
+<h2 id="賽後"><a href="#賽後" class="headerlink" title="賽後"></a>賽後</h2><p>Final:368&#x2F;700 Rk:4(校內1)</p>
 <p>前三小時完全不知道在幹嘛，好在後面心態有穩住。<br>B題敘毒瘤，我不會數學<br>C暴力解想法是對的(不知道到13就會有解)，但覺得很煩就沒寫，我不會猜拳<br>D以為是有向圖，DFS10分沒拿到，我不會圖論<br>題目方向思考是對的，有猜到是樹DP<br>E我不會數學，超噁心<br>G沒看，我不會看題目</p>
 <p>胡祐誠 蕭奕鵬 沒披薩索性不比，超電<br>吳柏翰 神奇pB，dian<br>林煜傑 謝謝學長辦如此簡單的比賽，我弱<br>fysty賽前說他覺得很簡單，ABCD跟CFdiv2差不多(顯然否)<br>話說雄中氣球盃怎麼好像雄中的沒幾個<br>亡靈再度被消費</p>
 <p>題解：<a target="_blank" rel="noopener" href="https://hackmd.io/@Fysty/BalloonCup7th?fbclid=IwAR3LuKRBUaF3DNGTRzWfvbiIFHDcJ05DA2zNa_CQSjySMF-HjLhEhSRB-ac">https://hackmd.io/@Fysty/BalloonCup7th?fbclid=IwAR3LuKRBUaF3DNGTRzWfvbiIFHDcJ05DA2zNa_CQSjySMF-HjLhEhSRB-ac</a><br>記分板：<a target="_blank" rel="noopener" href="https://oj.nerde.pw/contest/ballooncup7th/ranking/">https://oj.nerde.pw/contest/ballooncup7th/ranking/</a></p>
